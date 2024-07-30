@@ -1,1 +1,1 @@
-# hotel-api
+# Hotel backend API.
