@@ -1,0 +1,28 @@
+@hostAddress = https://localhost:7100
+
+GET {{hostAddress}}/api/rooms
+
+###
+GET {{hostAddress}}/api/rooms/3
+
+###
+POST {{hostAddress}}/api/rooms
+Content-Type: application/json
+
+{
+    "roomNo": "301",
+    "NumOfBeds": 4
+}
+
+###
+PUT {{hostAddress}}/api/rooms/3
+Content-Type: application/json
+
+{
+    "id": 3,
+    "roomNo": "201",
+    "NumOfBeds": 5
+}
+
+###
+DELETE {{hostAddress}}/api/rooms/5

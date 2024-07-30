@@ -1,12 +1,13 @@
-using Hotel.Dal;
+using Hotel.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDal();
+builder.Services.AddEndpoints();
 
 var app = builder.Build();
 
-app.MapGet("/", (HotelContext db) => $"Rooms in Hotel: {db.Rooms.Count()}");
+app.MapEndpoints();
 
 using (var scope = app.Services.CreateScope())
 {
