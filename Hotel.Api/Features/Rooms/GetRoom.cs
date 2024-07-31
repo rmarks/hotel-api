@@ -25,6 +25,6 @@ public static class GetRoom
 
         var response = new Response(room.Id, room.RoomNo, room.NumOfBeds);
 
-        return Results.Ok(room);
+        return Results.Ok(response);
     }
 }
