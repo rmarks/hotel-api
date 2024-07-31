@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Hotel.Api.Features.Rooms;
 
@@ -12,15 +13,15 @@ public static class DeleteRoom
         }
     }
 
-    public static async Task<IResult> Handler(int id, HotelContext db)
+    public static async Task<Results<NoContent, NotFound>> Handler(int id, HotelContext db)
     {
         var room = await db.Rooms.FindAsync(id);
 
-        if (room is null) return Results.NotFound();
+        if (room is null) return TypedResults.NotFound();
 
         db.Remove(room);
         await db.SaveChangesAsync();
 
-        return Results.NoContent();
+        return TypedResults.NoContent();
     }
 }

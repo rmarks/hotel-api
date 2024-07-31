@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Hotel.Api.Features.Rooms;
 
@@ -14,17 +15,17 @@ public static class UpdateRoom
         }
     }
 
-    public static async Task<IResult> Handler(int id, Request request, HotelContext db)
+    public static async Task<Results<NoContent, NotFound, Conflict>> Handler(int id, Request request, HotelContext db)
     {
-        if (id != request.Id) return Results.Conflict();
+        if (id != request.Id) return TypedResults.Conflict();
 
         var room = await db.Rooms.FindAsync(id);
 
-        if (room is null) return Results.NotFound();
+        if (room is null) return TypedResults.NotFound();
 
         db.Entry(room).CurrentValues.SetValues(request);
         await db.SaveChangesAsync();
 
-        return Results.NoContent();
+        return TypedResults.NoContent();
     }
 }

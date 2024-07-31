@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Hotel.Api.Features.Rooms;
 
@@ -15,7 +16,7 @@ public static class CreateRoom
         }
     }
 
-    public static async Task<IResult> Handler(Request request, HotelContext db)
+    public static async Task<Created<Response>> Handler(Request request, HotelContext db)
     {
         var room = new Room
         {
@@ -28,6 +29,6 @@ public static class CreateRoom
 
         var response = new Response(room.Id, room.RoomNo, room.NumOfBeds);
 
-        return Results.Created($"/api/rooms/{response.Id}", response);
+        return TypedResults.Created($"/api/rooms/{response.Id}", response);
     }
 }

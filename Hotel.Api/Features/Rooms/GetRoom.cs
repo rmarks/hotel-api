@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.Api.Features.Rooms;
@@ -15,16 +16,16 @@ public static class GetRoom
         }
     }
 
-    public static async Task<IResult> Handler(int id, HotelContext db)
+    public static async Task<Results<Ok<Response>, NotFound>> Handler(int id, HotelContext db)
     {
         var room = await db.Rooms
             .AsNoTracking()
             .FirstOrDefaultAsync(r => r.Id == id);
 
-        if (room is null) return Results.NotFound();
+        if (room is null) return TypedResults.NotFound();
 
         var response = new Response(room.Id, room.RoomNo, room.NumOfBeds);
 
-        return Results.Ok(response);
+        return TypedResults.Ok(response);
     }
 }
