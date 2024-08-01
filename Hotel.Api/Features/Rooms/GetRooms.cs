@@ -1,5 +1,4 @@
 ﻿using Hotel.Api.Utils;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.Api.Features.Rooms;
 
@@ -11,7 +10,8 @@ public static class GetRooms
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/rooms", Handler);
+            app.MapGet("/api/rooms", Handler)
+                .WithTags("Rooms");
         }
     }
 

@@ -12,7 +12,8 @@ public static class CreateRoom
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPost("/api/rooms", Handler);
+            app.MapPost("/api/rooms", Handler)
+                .WithTags("Rooms");
         }
     }
 

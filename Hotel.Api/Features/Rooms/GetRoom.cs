@@ -1,6 +1,5 @@
 ﻿using Hotel.Api.Utils;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.Api.Features.Rooms;
 
@@ -12,7 +11,8 @@ public static class GetRoom
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapGet("/api/rooms/{id}", Handler);
+            app.MapGet("/api/rooms/{id}", Handler)
+                .WithTags("Rooms");
         }
     }
 

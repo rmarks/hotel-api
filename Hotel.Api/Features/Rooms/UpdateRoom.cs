@@ -11,7 +11,8 @@ public static class UpdateRoom
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPut("/api/rooms/{id}", Handler);
+            app.MapPut("/api/rooms/{id}", Handler)
+                .WithTags("Rooms");
         }
     }
 

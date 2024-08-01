@@ -9,7 +9,8 @@ public static class DeleteRoom
     {
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/api/rooms/{id}", Handler);
+            app.MapDelete("/api/rooms/{id}", Handler)
+                .WithTags("Rooms");
         }
     }
 

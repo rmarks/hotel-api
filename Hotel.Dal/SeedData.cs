@@ -14,6 +14,12 @@ public class SeedData
             new Room { RoomNo = "201", NumOfBeds = 3 },
             new Room { RoomNo = "202", NumOfBeds = 3 });
 
+        db.Visitors.AddRange(
+            new Visitor { FirstName = "Aadu", LastName = "Kana", IdCode = "34902241234", Email = "aadu.kana@gmail.com" },
+            new Visitor { FirstName = "Lembe", LastName = "Laulik", IdCode = "45403081234", Email = "lembe54@hotmail.com" },
+            new Visitor { FirstName = "Kalle", LastName = "Kusta", IdCode = "36808201234", Email = "kalle@hot.ee" },
+            new Visitor { FirstName = "Klaara", LastName = "Kukk", IdCode = "37612231234", Email = "klaara.kukk@mail.ee" });
+        
         db.SaveChanges();
     }
 }

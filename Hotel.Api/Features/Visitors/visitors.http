@@ -1,0 +1,32 @@
+@hostAddress = https://localhost:7100
+
+GET {{hostAddress}}/api/visitors
+
+###
+GET {{hostAddress}}/api/visitors/4
+
+###
+POST {{hostAddress}}/api/visitors
+Content-Type: application/json
+
+{
+  "firstName": "Leopold",
+  "lastName": "Pukspuu",
+  "idCode": "34606231234",
+  "email": "leopold.pukspuu@gmail.com"
+}
+
+###
+PUT {{hostAddress}}/api/visitors/5
+Content-Type: application/json
+
+{
+  "id": 5,
+  "firstName": "Gunnar",
+  "lastName": "Pukspuu",
+  "idCode": "34606231234",
+  "email": "pukspuu@gmail.com"
+}
+
+###
+DELETE {{hostAddress}}/api/visitors/5

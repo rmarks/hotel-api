@@ -10,4 +10,5 @@ public class HotelContext : DbContext
     }
 
     public DbSet<Room> Rooms { get; set; }
+    public DbSet<Visitor> Visitors { get; set; }
 }

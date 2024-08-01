@@ -1,9 +1,13 @@
+using Carter;
 using Hotel.Api.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDal();
+
 builder.Services.AddEndpoints();
+builder.Services.AddCarter();
+
 builder.Services.AddCors(options =>
     options.AddPolicy(name: "AllOrigins", policy =>
         policy.AllowAnyOrigin()
@@ -30,6 +34,7 @@ app.UseSwagger();
 app.UseSwaggerUI(options => options.DefaultModelsExpandDepth(-1)); // Hides schemas/models section in Swagger UI
 
 app.MapEndpoints();
+app.MapCarter();
 
 using (var scope = app.Services.CreateScope())
 {
