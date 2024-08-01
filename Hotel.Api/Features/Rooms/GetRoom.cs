@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Mapster;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Hotel.Api.Features.Rooms;
@@ -24,7 +25,7 @@ public static class GetRoom
 
         if (room is null) return TypedResults.NotFound();
 
-        var response = new Response(room.Id, room.RoomNo, room.NumOfBeds);
+        var response = room.Adapt<Response>();
 
         return TypedResults.Ok(response);
     }

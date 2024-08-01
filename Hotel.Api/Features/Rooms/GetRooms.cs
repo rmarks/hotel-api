@@ -1,8 +1,9 @@
 ﻿using Hotel.Api.Utils;
+using Mapster;
 
 namespace Hotel.Api.Features.Rooms;
 
-public record RoomListDto(int Id, string RoomNo, int NumOfBeds);
+public record RoomListModel(int Id, string RoomNo, int NumOfBeds);
 
 public static class GetRooms
 {
@@ -15,12 +16,12 @@ public static class GetRooms
         }
     }
 
-    public static async Task<IEnumerable<RoomListDto>> Handler(HotelContext db)
+    public static async Task<IEnumerable<RoomListModel>> Handler(HotelContext db)
     {
         return await db.Rooms
             .AsNoTracking()
             .OrderBy(r => r.RoomNo)
-            .Select(r => new RoomListDto(r.Id, r.RoomNo, r.NumOfBeds))
+            .ProjectToType<RoomListModel>()
             .ToListAsync();
     }
 }

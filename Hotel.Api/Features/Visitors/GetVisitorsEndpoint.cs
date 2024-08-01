@@ -1,8 +1,9 @@
 ﻿using Carter;
+using Mapster;
 
 namespace Hotel.Api.Features.Visitors;
 
-public record VisitorListDto(int Id, string Name, string Email);
+public record VisitorListModel(int Id, string Name, string Email);
 
 public class GetVisitorsEndpoint : ICarterModule
 {
@@ -12,11 +13,11 @@ public class GetVisitorsEndpoint : ICarterModule
             .WithTags("Visitors");
     }
 
-    public async Task<IEnumerable<VisitorListDto>> GetVisitors(HotelContext db)
+    public async Task<IEnumerable<VisitorListModel>> GetVisitors(HotelContext db)
     {
         return await db.Visitors
             .AsNoTracking()
-            .Select(v => new VisitorListDto(v.Id, v.Name, v.Email))
+            .ProjectToType<VisitorListModel>()
             .ToListAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Hotel.Api.Utils;
+using Mapster;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Hotel.Api.Features.Rooms;
@@ -19,16 +20,12 @@ public static class CreateRoom
 
     public static async Task<Created<Response>> Handler(Request request, HotelContext db)
     {
-        var room = new Room
-        {
-            RoomNo = request.RoomNo,
-            NumOfBeds = request.NumOfBeds,
-        };
+        var room = request.Adapt<Room>();
 
         await db.AddAsync(room);
         await db.SaveChangesAsync();
 
-        var response = new Response(room.Id, room.RoomNo, room.NumOfBeds);
+        var response = room.Adapt<Response>();
 
         return TypedResults.Created($"/api/rooms/{response.Id}", response);
     }
