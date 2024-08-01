@@ -28,7 +28,7 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish app
-        run: dotnet publish -c Release -o ./out
+        run: dotnet publish -c Release --property:PublishDir=./out
 
       - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v3
