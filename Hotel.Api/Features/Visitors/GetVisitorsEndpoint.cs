@@ -17,6 +17,8 @@ public class GetVisitorsEndpoint : ICarterModule
     {
         return await db.Visitors
             .AsNoTracking()
+            .OrderBy(v => v.FirstName)
+                .ThenBy(v => v.LastName)
             .ProjectToType<VisitorListModel>()
             .ToListAsync();
     }
