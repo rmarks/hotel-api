@@ -4,11 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDal();
 builder.Services.AddEndpoints();
-builder.Services.AddCors(options => 
-    options.AddPolicy(name: "AllOrigins", policy => 
-        policy.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()));
+//builder.Services.AddCors(options => 
+//    options.AddPolicy(name: "AllOrigins", policy => 
+//        policy.AllowAnyOrigin()
+//            .AllowAnyMethod()
+//            .AllowAnyHeader()));
 
 builder.Services.AddEndpointsApiExplorer();
 // because of the structure and naming of classes that contain Room endpoints and records.
@@ -24,7 +24,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllOrigins");
+//app.UseCors("AllOrigins");
 
 app.UseSwagger();
 app.UseSwaggerUI(options => options.DefaultModelsExpandDepth(-1)); // Hides schemas/models section in Swagger UI
